@@ -5,6 +5,10 @@ VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpMate.CommandLine", "CSharpMate.CommandLine\CSharpMate.CommandLine.csproj", "{1E3C0A1A-CFEC-4C2A-BF0D-5E21DE0A1EF5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpMate.Core", "CSharpMate.Core\CSharpMate.Core.csproj", "{F345FFFC-796A-4B39-8526-5C29F52038CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpMate.Console", "CSharpMate.Console\CSharpMate.Console.csproj", "{AE183FF4-ECA2-4929-9501-7669FD54A862}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{1E3C0A1A-CFEC-4C2A-BF0D-5E21DE0A1EF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E3C0A1A-CFEC-4C2A-BF0D-5E21DE0A1EF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E3C0A1A-CFEC-4C2A-BF0D-5E21DE0A1EF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F345FFFC-796A-4B39-8526-5C29F52038CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F345FFFC-796A-4B39-8526-5C29F52038CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F345FFFC-796A-4B39-8526-5C29F52038CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F345FFFC-796A-4B39-8526-5C29F52038CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE183FF4-ECA2-4929-9501-7669FD54A862}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE183FF4-ECA2-4929-9501-7669FD54A862}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE183FF4-ECA2-4929-9501-7669FD54A862}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE183FF4-ECA2-4929-9501-7669FD54A862}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

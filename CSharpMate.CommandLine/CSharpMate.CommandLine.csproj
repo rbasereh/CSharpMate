@@ -17,4 +17,8 @@
     <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="4.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CSharpMate.Core\CSharpMate.Core.csproj" />
+  </ItemGroup>
+
 </Project>
