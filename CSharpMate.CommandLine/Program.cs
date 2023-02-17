@@ -1,12 +1,11 @@
-﻿using System;
-
+﻿using McMaster.Extensions.CommandLineUtils;
 namespace CSharpMate.CommandLine
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            CommandLineApplication.Execute<CSharpMateCommand>(args);
         }
     }
 }
