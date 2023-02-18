@@ -1,16 +1,14 @@
-﻿//using Microsoft.Extensions.Logging;
+﻿using System;
 using MediatR;
-using Microsoft.Build.Locator;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.MSBuild;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Microsoft.CodeAnalysis;
+using Microsoft.Build.Locator;
+using System.Collections.Generic;
+using Microsoft.CodeAnalysis.MSBuild;
+using Microsoft.Extensions.DependencyInjection;
 namespace CSharpMate.Core
 {
     public static class MediatRHelper

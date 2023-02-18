@@ -1,17 +1,9 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Reflection.Emit;
-using System.Text;
-using System.Xml.Linq;
 
-namespace EITBuild
+namespace Generator
 {
     public class ClassAssembler
     {
@@ -77,7 +69,8 @@ namespace EITBuild
             {
                 _class = _class.AddMembers(SyntaxFactory.ParseMemberDeclaration($@"
         [OperationContract]
-        Task<{item.returnType}> {item.methodName}({item.parameterType} {item.parameterName}, CallContext context = default);"));
+        Task<{item.returnType}> {item.methodName}({item.parameterType} {item.parameterName}, CallContext context = default);
+"));
             }
             return this;
         }

@@ -1,19 +1,18 @@
-﻿using EITBuild;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Host.Mef;
-using System;
-using System.Collections.Generic;
+﻿using Generator;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Collections.Generic;
 
 namespace CSharpMate.Core.ProtoToPoco
 {
     public static class ProtoToPocoHelper
     {
-        public static Dictionary<string, string> GeneratedClass { get; set; } = new();
+        public static string Path { get; set; }
     }
     public class ProtoToPocoCommand : CommandBase
     {
@@ -22,9 +21,9 @@ namespace CSharpMate.Core.ProtoToPoco
     {
         public override async Task RunAsync(ProtoToPocoCommand command, CancellationToken cancellationToken)
         {
+            ProtoToPocoHelper.Path = @"D:\test1";
             var docs = await CSMateHelper.GetDocuments(CliHelper.ProjectPath);
             await Walker<ProtoToPocoWalker>(CSMateHelper.Solution, cancellationToken, docs);
-
         }
     }
     internal class ProtoToPocoWalker : CLICSharpSyntaxWalkerBase
@@ -44,9 +43,6 @@ namespace CSharpMate.Core.ProtoToPoco
             if (symbol != null
                 && symbol.IsAssignableFrom("IBufferMessage"))
             {
-
-
-
                 CreateRequest(symbol, node);
             }
             else
@@ -103,7 +99,13 @@ namespace CSharpMate.Core.ProtoToPoco
                     .CreateNamespace(globalNamespace)
                     .AddMembers(methodsMeta)
                     .Generate();
-                ProtoToPocoHelper.GeneratedClass.Add(service, result);
+                result = result.Insert(0,
+@"using ProtoBuf.Grpc;
+using System.ServiceModel;
+using System.Threading.Tasks;
+");
+                var foldername = Path.GetFileNameWithoutExtension(node.SyntaxTree.FilePath);
+                FileHelper.CreateFile(Path.Combine(ProtoToPocoHelper.Path, service + ".cs"), result);
             }
 
         }
@@ -130,16 +132,21 @@ namespace CSharpMate.Core.ProtoToPoco
                 properties.Add((propSymbol.Name, propSymbol.Type.ToString(), fields[propSymbol.Name]));
             });
             var globalNamespace = symbol.ContainingNamespace.ToString();
-
-            //model.GetDeclaredSymbol(props[0]).Type.ToString()
+            var objectName = symbol.Name;
             var result = ClassAssembler.Init()
-                .CreateClass(symbol.Name)
+                .CreateClass(objectName)
                 .CreateNamespace(globalNamespace)
                 .AddAtribute("ProtoContract")
                 .AddProperties(properties)
                 .Generate();
-            ProtoToPocoHelper.GeneratedClass.Add(symbol.Name, result);
 
+
+            result = result.Insert(0,
+@"using ProtoBuf;
+using Google.Protobuf.Collections;
+");
+            var foldername = Path.GetFileNameWithoutExtension(node.SyntaxTree.FilePath);
+            FileHelper.CreateFile(Path.Combine(ProtoToPocoHelper.Path, foldername, objectName + ".cs"), result);
         }
     }
     public static class ITypeSymbolExt

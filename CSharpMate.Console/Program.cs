@@ -1,6 +1,6 @@
-﻿using CSharpMate.Core;
+﻿using System;
+using CSharpMate.Core;
 using CSharpMate.Core.ProtoToPoco;
-using System;
 namespace CSharpMate
 {
     internal class Program
