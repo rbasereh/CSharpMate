@@ -7,16 +7,13 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
+using CSharpMate.Core.Commands;
 
 namespace CSharpMate.Core.ProtoToPoco
 {
     public static class ProtoToPocoHelper
     {
         public static string Path { get; set; }
-    }
-    public class ProtoToPocoCommand : CommandBase
-    {
-
     }
 
     internal class ProtoToPocoCommandHandler : CommandHandlerBase<ProtoToPocoCommand>

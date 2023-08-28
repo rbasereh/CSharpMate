@@ -1,18 +1,22 @@
-﻿using System;
-using CSharpMate.Core;
-using CSharpMate.Core.ProtoToPoco;
+﻿using CSharpMate.Core;
+using CSharpMate.Core.Commands;
+using System;
 namespace CSharpMate
 {
-/// <summary>
-/// for run Core wihtout CLI
-/// </summary>
+    /// <summary>
+    /// for run Core wihtout CLI
+    /// </summary>
     internal class Program
     {
         static void Main(string[] args)
         {
-            CliHelper.ProjectPath = @"ProjectPath";
+            var x = DateTime.Now;
+            var str = Newtonsoft.Json.JsonConvert.SerializeObject(x);
+
+
+
             CliHelper.LogEnabled = true;
-            CSMateHelper.Send(new ProtoToPocoCommand());
+            CSMateHelper.Send(new ExtractApiCommand());
             Console.WriteLine("Hello, World!");
         }
     }
